@@ -45,23 +45,6 @@ export const HomeContent: React.FC = () => {
   const [showTeamAlert, setShowTeamAlert] = useState(true);
   const [showProfileAlert, setShowProfileAlert] = useState(true);
   const [tasks, setTasks] = useState<Task[]>([{
-    id: "task-1",
-    label: "Complete Your Profile",
-    completed: true,
-    type: "redirect",
-    redirectUrl: "/profile/edit"
-  }, {
-    id: "task-2",
-    label: "Add Products (0/3)",
-    completed: false,
-    type: "simple"
-  }, {
-    id: "task-3",
-    label: "Add Team Members",
-    completed: true,
-    type: "redirect",
-    redirectUrl: "/activate-team"
-  }, {
     id: "task-4",
     label: "Sign Booth Agreement",
     completed: false,
@@ -69,27 +52,12 @@ export const HomeContent: React.FC = () => {
     type: "agreement",
     assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" }]
   }, {
-    id: "task-5",
-    label: "Manage Availability",
-    completed: false,
-    type: "simple"
-  }, {
     id: "task-6",
     label: "Upload Booth Graphics",
     completed: false,
     dueDate: "Dec 20, 2024",
     type: "upload",
     assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" }, { id: "3", name: "Alex Kim", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face" }]
-  }, {
-    id: "task-7",
-    label: "Set Meeting Preferences",
-    completed: false,
-    type: "simple"
-  }, {
-    id: "task-8",
-    label: "Review Event Schedule",
-    completed: false,
-    type: "simple"
   }, {
     id: "task-10",
     label: "Submit Company Logo",
@@ -104,6 +72,36 @@ export const HomeContent: React.FC = () => {
     dueDate: "Dec 25, 2024",
     type: "upload",
     assignedTo: [{ id: "2", name: "John Doe", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" }]
+  }, {
+    id: "task-1",
+    label: "Complete Your Profile",
+    completed: true,
+    type: "simple"
+  }, {
+    id: "task-2",
+    label: "Add Products (0/3)",
+    completed: false,
+    type: "simple"
+  }, {
+    id: "task-3",
+    label: "Add Team Members",
+    completed: true,
+    type: "simple"
+  }, {
+    id: "task-5",
+    label: "Manage Availability",
+    completed: false,
+    type: "simple"
+  }, {
+    id: "task-7",
+    label: "Set Meeting Preferences",
+    completed: false,
+    type: "simple"
+  }, {
+    id: "task-8",
+    label: "Review Event Schedule",
+    completed: false,
+    type: "simple"
   }]);
 
   const teamMembers = [{

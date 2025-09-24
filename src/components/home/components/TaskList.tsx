@@ -48,12 +48,11 @@ export const TaskList: React.FC<TaskListProps> = ({
   ];
 
   const handleTaskClick = (task: Task) => {
-    if (task.type === 'redirect' && task.redirectUrl) {
-      navigate(task.redirectUrl);
-      return;
+    // Only handle clickable tasks (agreement and upload types)
+    if (task.type === 'agreement' || task.type === 'upload') {
+      setSelectedTask(task);
+      setIsModalOpen(true);
     }
-    setSelectedTask(task);
-    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
@@ -149,7 +148,11 @@ export const TaskList: React.FC<TaskListProps> = ({
                 {tasks.map(task => (
                   <TableRow 
                     key={task.id} 
-                    className="cursor-pointer hover:bg-muted/50"
+                    className={`${
+                      task.type === 'agreement' || task.type === 'upload' 
+                        ? 'cursor-pointer hover:bg-muted/50' 
+                        : ''
+                    }`}
                     onClick={() => handleTaskClick(task)}
                   >
                     <TableCell>
