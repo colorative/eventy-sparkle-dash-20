@@ -31,6 +31,14 @@ interface Task {
   id: string;
   label: string;
   completed: boolean;
+  dueDate?: string;
+  assignedTo?: Array<{
+    id: string;
+    name: string;
+    avatar: string;
+  }>;
+  type: 'redirect' | 'agreement' | 'upload' | 'simple';
+  redirectUrl?: string;
 }
 
 export const HomeContent: React.FC = () => {
@@ -39,43 +47,63 @@ export const HomeContent: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([{
     id: "task-1",
     label: "Complete Your Profile",
-    completed: true
+    completed: true,
+    type: "redirect",
+    redirectUrl: "/profile/edit"
   }, {
     id: "task-2",
     label: "Add Products (0/3)",
-    completed: false
+    completed: false,
+    type: "simple"
   }, {
     id: "task-3",
     label: "Add Team Members",
-    completed: true
+    completed: true,
+    type: "redirect",
+    redirectUrl: "/activate-team"
   }, {
     id: "task-4",
     label: "Sign Booth Agreement",
-    completed: false
+    completed: false,
+    dueDate: "Dec 15, 2024",
+    type: "agreement",
+    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "SC" }]
   }, {
     id: "task-5",
     label: "Manage Availability",
-    completed: false
+    completed: false,
+    type: "simple"
   }, {
     id: "task-6",
     label: "Upload Booth Graphics",
-    completed: false
+    completed: false,
+    dueDate: "Dec 20, 2024",
+    type: "upload",
+    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "SC" }, { id: "3", name: "Alex Kim", avatar: "AK" }]
   }, {
     id: "task-7",
     label: "Set Meeting Preferences",
-    completed: false
+    completed: false,
+    type: "simple"
   }, {
     id: "task-8",
     label: "Review Event Schedule",
-    completed: false
+    completed: false,
+    type: "simple"
   }, {
     id: "task-10",
     label: "Submit Company Logo",
-    completed: true
+    completed: true,
+    dueDate: "Dec 10, 2024",
+    type: "upload",
+    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "SC" }]
   }, {
     id: "task-12",
     label: "Prepare Marketing Materials",
-    completed: false
+    completed: false,
+    dueDate: "Dec 25, 2024",
+    type: "upload",
+    assignedTo: [{ id: "2", name: "John Doe", avatar: "JD" }]
   }]);
 
   const teamMembers = [{
