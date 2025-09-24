@@ -67,7 +67,7 @@ export const HomeContent: React.FC = () => {
     completed: false,
     dueDate: "Dec 15, 2024",
     type: "agreement",
-    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "SC" }]
+    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" }]
   }, {
     id: "task-5",
     label: "Manage Availability",
@@ -79,7 +79,7 @@ export const HomeContent: React.FC = () => {
     completed: false,
     dueDate: "Dec 20, 2024",
     type: "upload",
-    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "SC" }, { id: "3", name: "Alex Kim", avatar: "AK" }]
+    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" }, { id: "3", name: "Alex Kim", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face" }]
   }, {
     id: "task-7",
     label: "Set Meeting Preferences",
@@ -96,14 +96,14 @@ export const HomeContent: React.FC = () => {
     completed: true,
     dueDate: "Dec 10, 2024",
     type: "upload",
-    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "SC" }]
+    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" }]
   }, {
     id: "task-12",
     label: "Prepare Marketing Materials",
     completed: false,
     dueDate: "Dec 25, 2024",
     type: "upload",
-    assignedTo: [{ id: "2", name: "John Doe", avatar: "JD" }]
+    assignedTo: [{ id: "2", name: "John Doe", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" }]
   }]);
 
   const teamMembers = [{

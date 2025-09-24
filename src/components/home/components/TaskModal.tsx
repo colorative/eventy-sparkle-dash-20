@@ -83,7 +83,7 @@ export const TaskModal: React.FC<TaskModalProps> = ({
               <div className="mt-2 border-2 border-dashed border-muted-foreground/25 rounded-lg p-6 text-center">
                 <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground mb-2">
-                  Drop your file here or click to browse
+                  Drop your file here
                 </p>
                 <p className="text-xs text-muted-foreground">PDF or DOC format</p>
                 <Input
@@ -105,19 +105,6 @@ export const TaskModal: React.FC<TaskModalProps> = ({
               />
             </div>
 
-            <div>
-              <label className="text-sm font-medium">Assign To</label>
-              <Select value={assignedUser} onValueChange={setAssignedUser}>
-                <SelectTrigger className="mt-2">
-                  <SelectValue placeholder="Select team member" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="sarah">Sarah Connor</SelectItem>
-                  <SelectItem value="john">John Doe</SelectItem>
-                  <SelectItem value="alex">Alex Kim</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
 
             <Button 
               onClick={handleSubmit} 
@@ -147,7 +134,7 @@ export const TaskModal: React.FC<TaskModalProps> = ({
               <div className="mt-2 border-2 border-dashed border-muted-foreground/25 rounded-lg p-6 text-center">
                 <Upload className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground mb-2">
-                  Drop your files here or click to browse
+                  Drop your files here
                 </p>
                 <p className="text-xs text-muted-foreground">PNG, JPG, or PDF (max 50MB)</p>
                 <Input
@@ -160,18 +147,6 @@ export const TaskModal: React.FC<TaskModalProps> = ({
               </div>
             </div>
 
-            <div>
-              <label className="text-sm font-medium">Assign To</label>
-              <Select value={assignedUser} onValueChange={setAssignedUser}>
-                <SelectTrigger className="mt-2">
-                  <SelectValue placeholder="Select admin" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="sarah">Sarah Connor (Admin)</SelectItem>
-                  <SelectItem value="alex">Alex Kim (Admin)</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
 
             <Button 
               onClick={handleSubmit} 
