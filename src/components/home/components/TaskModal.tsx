@@ -75,7 +75,7 @@ export const TaskModal: React.FC<TaskModalProps> = ({
                   Drop your file here
                 </p>
                 <p className="text-xs text-muted-foreground">PDF or DOC format</p>
-                <Input type="file" accept=".pdf,.doc,.docx" onChange={e => setFile(e.target.files?.[0] || null)} className="mt-2" />
+                
               </div>
             </div>
 
