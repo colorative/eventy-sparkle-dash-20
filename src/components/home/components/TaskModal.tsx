@@ -109,7 +109,7 @@ export const TaskModal: React.FC<TaskModalProps> = ({
                   Drop your files here
                 </p>
                 <p className="text-xs text-muted-foreground">PNG, JPG, or PDF (max 50MB)</p>
-                <Input type="file" accept=".png,.jpg,.jpeg,.pdf" multiple onChange={e => setFile(e.target.files?.[0] || null)} className="mt-2" />
+                
               </div>
             </div>
 
