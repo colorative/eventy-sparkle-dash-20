@@ -14,7 +14,6 @@ interface Task {
   assignedTo?: Array<{
     id: string;
     name: string;
-    avatar: string;
   }>;
   type: 'redirect' | 'agreement' | 'upload' | 'simple';
   redirectUrl?: string;

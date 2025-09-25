@@ -35,7 +35,6 @@ interface Task {
   assignedTo?: Array<{
     id: string;
     name: string;
-    avatar: string;
   }>;
   type: 'redirect' | 'agreement' | 'upload' | 'simple';
   redirectUrl?: string;
@@ -50,28 +49,28 @@ export const HomeContent: React.FC = () => {
     completed: false,
     dueDate: "Dec 15, 2024",
     type: "agreement",
-    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" }]
+    assignedTo: [{ id: "1", name: "Sarah Connor" }]
   }, {
     id: "task-6",
     label: "Upload Booth Graphics",
     completed: false,
     dueDate: "Dec 20, 2024",
     type: "upload",
-    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" }, { id: "3", name: "Alex Kim", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face" }]
+    assignedTo: [{ id: "1", name: "Sarah Connor" }, { id: "3", name: "Alex Kim" }]
   }, {
     id: "task-10",
     label: "Submit Company Logo",
     completed: true,
     dueDate: "Dec 10, 2024",
     type: "upload",
-    assignedTo: [{ id: "1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" }]
+    assignedTo: [{ id: "1", name: "Sarah Connor" }]
   }, {
     id: "task-12",
     label: "Prepare Marketing Materials",
     completed: false,
     dueDate: "Dec 25, 2024",
     type: "upload",
-    assignedTo: [{ id: "2", name: "John Doe", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" }]
+    assignedTo: [{ id: "2", name: "John Doe" }]
   }, {
     id: "task-1",
     label: "Complete Your Profile",
