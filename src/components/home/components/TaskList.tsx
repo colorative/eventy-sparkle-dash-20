@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check, Calendar, Users, UserPlus, Mail } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -12,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { TaskModal } from "./TaskModal";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import BoringAvatar from "boring-avatars";
 
 interface Task {
   id: string;
@@ -47,10 +47,10 @@ export const TaskList: React.FC<TaskListProps> = ({
   const { toast } = useToast();
 
   const availableAdmins = [
-    { id: "admin1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" },
-    { id: "admin2", name: "John Doe", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" },
-    { id: "admin3", name: "Alex Kim", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face" },
-    { id: "admin4", name: "Maria Garcia", avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" }
+    { id: "admin1", name: "Sarah Connor" },
+    { id: "admin2", name: "John Doe" },
+    { id: "admin3", name: "Alex Kim" },
+    { id: "admin4", name: "Maria Garcia" }
   ];
 
   const handleTaskClick = (task: Task) => {
@@ -111,12 +111,14 @@ export const TaskList: React.FC<TaskListProps> = ({
         {assignedTo && assignedTo.length > 0 ? (
           <div className="flex -space-x-2">
             {assignedTo.slice(0, 3).map((user) => (
-              <Avatar key={user.id} className="h-6 w-6 border-2 border-background">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="text-xs bg-primary text-primary-foreground">
-                  {user.name.split(' ').map(n => n[0]).join('')}
-                </AvatarFallback>
-              </Avatar>
+              <div key={user.id} className="h-6 w-6 border-2 border-background rounded-full overflow-hidden">
+                <BoringAvatar
+                  size={24}
+                  name={user.name}
+                  variant="marble"
+                  colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+                />
+              </div>
             ))}
             {assignedTo.length > 3 && (
               <div className="h-6 w-6 rounded-full bg-muted border-2 border-background flex items-center justify-center">
@@ -242,12 +244,14 @@ export const TaskList: React.FC<TaskListProps> = ({
                   }`}
                   onClick={() => handleAssignUser(admin.id)}
                 >
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={admin.avatar} alt={admin.name} />
-                    <AvatarFallback>
-                      {admin.name.split(' ').map(n => n[0]).join('')}
-                    </AvatarFallback>
-                  </Avatar>
+                  <div className="h-8 w-8 rounded-full overflow-hidden">
+                    <BoringAvatar
+                      size={32}
+                      name={admin.name}
+                      variant="marble"
+                      colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+                    />
+                  </div>
                   <span className="text-sm font-medium">{admin.name}</span>
                   {assignedUsers.includes(admin.id) && (
                     <Check className="h-4 w-4 ml-auto text-primary" />
