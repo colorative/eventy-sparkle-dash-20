@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Calendar, Users, UserPlus } from "lucide-react";
+import { Check, Calendar, Users, UserPlus, Mail } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { TaskModal } from "./TaskModal";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 interface Task {
   id: string;
@@ -39,6 +42,9 @@ export const TaskList: React.FC<TaskListProps> = ({
   const [isAssignModalOpen, setIsAssignModalOpen] = useState(false);
   const [selectedTaskForAssign, setSelectedTaskForAssign] = useState<Task | null>(null);
   const [assignedUsers, setAssignedUsers] = useState<string[]>([]);
+  const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState("");
+  const { toast } = useToast();
 
   const availableAdmins = [
     { id: "admin1", name: "Sarah Connor", avatar: "https://images.unsplash.com/photo-1494790108755-2616b9ef3c65?w=150&h=150&fit=crop&crop=face" },
@@ -80,6 +86,21 @@ export const TaskList: React.FC<TaskListProps> = ({
     console.log('Saving assignments:', assignedUsers);
     setIsAssignModalOpen(false);
     setSelectedTaskForAssign(null);
+  };
+
+  const handleInviteAdmin = () => {
+    setIsInviteModalOpen(true);
+  };
+
+  const handleSendInvite = () => {
+    // Here you would typically send the invitation
+    console.log('Sending invite to:', inviteEmail);
+    toast({
+      title: "Invitation sent!",
+      description: `Invitation has been sent to ${inviteEmail}`,
+    });
+    setInviteEmail("");
+    setIsInviteModalOpen(false);
   };
 
   const renderAssignedTo = (task: Task) => {
@@ -235,12 +256,59 @@ export const TaskList: React.FC<TaskListProps> = ({
               ))}
             </div>
             
+            <Button
+              variant="outline"
+              onClick={handleInviteAdmin}
+              className="w-full mt-2"
+            >
+              <Mail className="h-4 w-4 mr-2" />
+              Invite Admin
+            </Button>
+            
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setIsAssignModalOpen(false)} className="flex-1">
                 Cancel
               </Button>
               <Button onClick={handleSaveAssignments} className="flex-1">
                 Save Assignments
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isInviteModalOpen} onOpenChange={setIsInviteModalOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Invite Admin</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Send an invitation to a new admin by entering their email address.
+            </p>
+            
+            <div className="space-y-2">
+              <Label htmlFor="email">Email Address</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="admin@example.com"
+                value={inviteEmail}
+                onChange={(e) => setInviteEmail(e.target.value)}
+              />
+            </div>
+            
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={() => setIsInviteModalOpen(false)} className="flex-1">
+                Cancel
+              </Button>
+              <Button 
+                onClick={handleSendInvite} 
+                className="flex-1"
+                disabled={!inviteEmail.trim()}
+              >
+                Send Invitation
               </Button>
             </div>
           </div>
