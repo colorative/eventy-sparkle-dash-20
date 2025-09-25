@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useSidebar } from "@/components/ui/sidebar";
 import { ConversationList } from "@/components/inbox/ConversationList";
 import { FloatingChatWindow } from "@/components/inbox/FloatingChatWindow";
+import { TaskListSidebar } from "./TaskListSidebar";
 
 interface Message {
   id: number;
@@ -35,6 +36,54 @@ interface OpenChat {
 export const RightSidebar: React.FC = () => {
   const location = useLocation();
   const sidebarContext = useSidebar();
+  
+  // Sample tasks data - in real app this would come from props or context
+  const sampleTasks = [
+    {
+      id: "task-5",
+      label: "Sign Exhibitor Agreement",
+      completed: false,
+      dueDate: "Dec 15, 2024",
+      type: "agreement" as const,
+      assignedTo: [{ id: "1", name: "Sarah Connor" }]
+    },
+    {
+      id: "task-6",
+      label: "Upload Booth Graphics",
+      completed: false,
+      dueDate: "Dec 20, 2024",
+      type: "upload" as const,
+      assignedTo: [{ id: "1", name: "Sarah Connor" }, { id: "3", name: "Alex Kim" }]
+    },
+    {
+      id: "task-10",
+      label: "Submit Company Logo",
+      completed: true,
+      dueDate: "Dec 10, 2024",
+      type: "upload" as const,
+      assignedTo: [{ id: "1", name: "Sarah Connor" }]
+    },
+    {
+      id: "task-12",
+      label: "Prepare Marketing Materials",
+      completed: false,
+      dueDate: "Dec 25, 2024",
+      type: "upload" as const,
+      assignedTo: [{ id: "2", name: "John Doe" }]
+    },
+    {
+      id: "task-1",
+      label: "Complete Your Profile",
+      completed: true,
+      dueDate: "Dec 8, 2024",
+      type: "redirect" as const,
+      redirectUrl: "/profile"
+    }
+  ];
+
+  const handleToggleTask = (taskId: string) => {
+    console.log('Toggling task:', taskId);
+  };
   
   const [conversations] = useState<Conversation[]>([
     {
@@ -156,25 +205,32 @@ export const RightSidebar: React.FC = () => {
   return (
     <>
       <div className={sidebarClassName}>
-        <div className="bg-white min-w-80 w-[308px] overflow-hidden rounded-lg h-full">
-          <div className="w-full h-full flex flex-col">
-            <div className="w-full flex-1">
-              <div className="flex w-full flex-col items-stretch justify-center p-2 h-full">
-                <div className="w-full h-full flex flex-col">
-                  <div className="p-3 border-b bg-muted/30">
-                    <h3 className="font-medium text-sm">Inbox</h3>
-                  </div>
-                  <div className="flex-1 p-2 overflow-hidden">
-                    <ConversationList 
-                      conversations={conversations}
-                      onConversationClick={handleConversationClick}
-                    />
+        {location.pathname === "/" ? (
+          <TaskListSidebar 
+            tasks={sampleTasks}
+            onToggleTask={handleToggleTask}
+          />
+        ) : (
+          <div className="bg-white min-w-80 w-[308px] overflow-hidden rounded-lg h-full">
+            <div className="w-full h-full flex flex-col">
+              <div className="w-full flex-1">
+                <div className="flex w-full flex-col items-stretch justify-center p-2 h-full">
+                  <div className="w-full h-full flex flex-col">
+                    <div className="p-3 border-b bg-muted/30">
+                      <h3 className="font-medium text-sm">Inbox</h3>
+                    </div>
+                    <div className="flex-1 p-2 overflow-hidden">
+                      <ConversationList 
+                        conversations={conversations}
+                        onConversationClick={handleConversationClick}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Floating Chat Windows */}
