@@ -101,11 +101,7 @@ const Banner = () => {
             
           </div>
           
-          <DialogFooter className="px-6 pb-6">
-            <Button variant="blue" onClick={() => setShowRulesModal(false)} className="w-full sm:w-auto">
-              Got it
-            </Button>
-          </DialogFooter>
+          
         </DialogContent>
       </Dialog>
     </>;
