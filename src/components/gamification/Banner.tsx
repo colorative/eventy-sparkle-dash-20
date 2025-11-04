@@ -64,13 +64,13 @@ const Banner = () => {
           </button>
           
           <div className="bg-blue-600 -m-6 mb-4 rounded-t-lg">
-            <div className="flex items-center justify-between h-[70px] px-6">
-              <h2 className="text-xl font-bold text-white">Gamification Rules</h2>
+            <div className="flex items-center gap-4 h-[70px] px-6">
               <img 
                 src={gamificationIcon} 
                 alt="Gamification" 
-                className="h-[50px] object-contain mr-4"
+                className="h-[50px] object-contain"
               />
+              <h2 className="text-xl font-bold text-white">Gamification Rules</h2>
             </div>
           </div>
           
