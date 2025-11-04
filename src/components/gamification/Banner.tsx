@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import gamificationIcon from "@/assets/gamification-icon.png";
 
@@ -56,7 +57,7 @@ const Banner = () => {
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <button
             onClick={() => setShowRulesModal(false)}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground z-10"
+            className="absolute right-4 top-4 rounded-sm text-white opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none z-10"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
@@ -68,7 +69,7 @@ const Banner = () => {
               <img 
                 src={gamificationIcon} 
                 alt="Gamification" 
-                className="h-[50px] object-contain"
+                className="h-[50px] object-contain mr-4"
               />
             </div>
           </div>
@@ -145,6 +146,16 @@ const Banner = () => {
               </ul>
             </div>
           </div>
+          
+          <DialogFooter className="px-6 pb-6">
+            <Button 
+              variant="blue" 
+              onClick={() => setShowRulesModal(false)}
+              className="w-full sm:w-auto"
+            >
+              Got it
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </>
