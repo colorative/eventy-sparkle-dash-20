@@ -1,23 +1,13 @@
-
 import React, { useState } from "react";
 import { X, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import gamificationIcon from "@/assets/gamification-icon.png";
-
 const Banner = () => {
   const [showBanner, setShowBanner] = useState(true);
   const [showRulesModal, setShowRulesModal] = useState(false);
-  
   if (!showBanner) return null;
-  
-  return (
-    <>
+  return <>
       <div className="relative overflow-hidden rounded-lg mb-4 bg-blue-600">
         <div className="flex items-center h-[110px]">
           <div className="flex-1 p-6">
@@ -26,28 +16,15 @@ const Banner = () => {
                 <h2 className="text-2xl font-bold mb-1 text-white">Event Gamification</h2>
                 <p className="text-white">Complete challenges, earn points, and win prizes!</p>
               </div>
-              <Button 
-                variant="outline" 
-                className="bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white"
-                onClick={() => setShowRulesModal(true)}
-              >
+              <Button variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white" onClick={() => setShowRulesModal(true)}>
                 <Info className="mr-2 h-4 w-4" />
                 Gamification Rules
               </Button>
             </div>
           </div>
-        <img 
-          src="https://futureconnectdemo.eventify.io/p/1c63b91ed3d7f79a053ffd8bb8efa1e6.png" 
-          alt="Gamification" 
-          className="h-[110px] object-contain pr-10" 
-        />
+        <img src="https://futureconnectdemo.eventify.io/p/1c63b91ed3d7f79a053ffd8bb8efa1e6.png" alt="Gamification" className="h-[110px] object-contain pr-10" />
       </div>
-        <Button 
-          size="icon" 
-          variant="ghost" 
-          className="absolute top-2 right-2 text-white hover:bg-blue-700"
-          onClick={() => setShowBanner(false)}
-        >
+        <Button size="icon" variant="ghost" className="absolute top-2 right-2 text-white hover:bg-blue-700" onClick={() => setShowBanner(false)}>
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </Button>
@@ -55,21 +32,14 @@ const Banner = () => {
 
       <Dialog open={showRulesModal} onOpenChange={setShowRulesModal}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-          <button
-            onClick={() => setShowRulesModal(false)}
-            className="absolute right-4 top-4 rounded-sm text-white opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none z-10"
-          >
+          <button onClick={() => setShowRulesModal(false)} className="absolute right-4 top-4 rounded-sm text-white opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none z-10">
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
           </button>
           
           <div className="bg-blue-600 -m-6 mb-4 rounded-t-lg">
             <div className="flex items-center gap-4 h-[70px] px-6">
-              <img 
-                src={gamificationIcon} 
-                alt="Gamification" 
-                className="h-[50px] object-contain"
-              />
+              <img src={gamificationIcon} alt="Gamification" className="h-[50px] object-contain" />
               <h2 className="text-xl font-bold text-white">Gamification Rules</h2>
             </div>
           </div>
@@ -128,38 +98,16 @@ const Banner = () => {
                 </li>
               </ul>
             </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-2">Fair Play Policy</h3>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start">
-                  <span className="mr-2">•</span>
-                  <span>All activities must be genuine - fraudulent activities will result in disqualification</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2">•</span>
-                  <span>Event organizers reserve the right to verify any activity</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-2">•</span>
-                  <span>Have fun and engage authentically with the event community!</span>
-                </li>
-              </ul>
-            </div>
+            
           </div>
           
           <DialogFooter className="px-6 pb-6">
-            <Button 
-              variant="blue" 
-              onClick={() => setShowRulesModal(false)}
-              className="w-full sm:w-auto"
-            >
+            <Button variant="blue" onClick={() => setShowRulesModal(false)} className="w-full sm:w-auto">
               Got it
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </>
-  );
+    </>;
 };
-
 export default Banner;
