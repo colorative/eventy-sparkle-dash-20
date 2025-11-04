@@ -5,10 +5,9 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import gamificationIcon from "@/assets/gamification-icon.png";
 
 const Banner = () => {
   const [showBanner, setShowBanner] = useState(true);
@@ -57,18 +56,27 @@ const Banner = () => {
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <button
             onClick={() => setShowRulesModal(false)}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground z-10"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
           </button>
-          <DialogHeader>
-            <DialogTitle>Gamification Rules</DialogTitle>
-            <DialogDescription>
-              Follow these rules to maximize your points and climb the leaderboard!
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
+          
+          <div className="bg-blue-600 -m-6 mb-4 rounded-t-lg">
+            <div className="flex items-center justify-between h-[70px] px-6">
+              <h2 className="text-xl font-bold text-white">Gamification Rules</h2>
+              <img 
+                src={gamificationIcon} 
+                alt="Gamification" 
+                className="h-[50px] object-contain"
+              />
+            </div>
+          </div>
+          
+          <DialogDescription className="px-6">
+            Follow these rules to maximize your points and climb the leaderboard!
+          </DialogDescription>
+          <div className="space-y-4 py-4 px-6">
             <div>
               <h3 className="font-semibold text-lg mb-2">How to Earn Points</h3>
               <ul className="space-y-2 ml-4">
