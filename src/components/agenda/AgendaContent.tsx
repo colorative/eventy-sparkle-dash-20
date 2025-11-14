@@ -12,6 +12,7 @@ import BoringAvatar from "boring-avatars";
 import { toast } from "@/hooks/use-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { SessionDetailsContent } from "@/components/session/SessionDetailsContent";
+import { SponsoredSessionCard } from "@/components/agenda/SponsoredSessionCard";
 import { 
   MiniCalendar,
   MiniCalendarDay,
@@ -41,7 +42,11 @@ export const AgendaContent: React.FC = () => {
     },
     description: "Join Dr. Emma Chen as she explores emerging technologies and their impact on our future.",
     tags: ["AI", "Future Tech", "Innovation"],
-    saved: true
+    saved: true,
+    sponsors: [
+      { name: "Salesforce", logo: "/src/assets/salesforce-logo.png" },
+      { name: "HubSpot", logo: "/src/assets/hubspot-logo.png" }
+    ]
   }, {
     id: 2,
     title: "Workshop: Building Scalable Cloud Solutions",
@@ -306,68 +311,81 @@ export const AgendaContent: React.FC = () => {
 
       <ScrollArea className="flex-1 pr-4">
         {viewType === "list" ? <div className="space-y-4">
-            {filteredSessions.map((session, idx) => <Card key={session.id} className="overflow-hidden hover:shadow-md transition-all border-gray-200 dark:border-gray-700 dark:bg-gray-800 cursor-pointer flex" onClick={() => handleViewDetails(session.id)}>
-                <div className={`w-2 ${sessionCardColors[idx % sessionCardColors.length]}`}></div>
-                <div className="flex-1">
-                  <CardHeader className="pb-2">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-lg font-semibold dark:text-white line-clamp-2">{session.title}</h3>
-                      </div>
-                      <div className="flex gap-1">
-                        <Button variant="ghost" size="icon" onClick={e => {
-                          e.stopPropagation();
-                          handleAddToSchedule(session.id, session.title);
-                        }} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                          <Calendar className="h-4 w-4" />
-                        </Button>
-                        <Button variant="ghost" size="icon" onClick={e => {
-                          e.stopPropagation();
-                          handleSaveSession(session.id);
-                        }} className={session.saved ? "text-primary hover:text-primary/80 hover:bg-primary/10 dark:hover:bg-primary/20" : "hover:bg-gray-100 dark:hover:bg-gray-700"}>
-                          <Bookmark className="h-4 w-4" fill={session.saved ? "currentColor" : "none"} />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="dark:text-gray-300">
-                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
-                      <Clock className="h-4 w-4 mr-2" />
-                      <span>{session.time}</span>
-                      <span className="mx-2">•</span>
-                      <MapPin className="h-4 w-4 mr-1" />
-                      <span>{session.location}</span>
-                    </div>
-                    
-                    {session.speaker && <div className="flex items-center gap-2 mb-3">
-                        <BoringAvatar size={32} name={session.speaker.avatarName} variant="marble" colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]} />
+            {filteredSessions.map((session, idx) => 
+              session.sponsors && session.sponsors.length > 0 ? (
+                <SponsoredSessionCard
+                  key={session.id}
+                  session={session}
+                  colorClass={sessionCardColors[idx % sessionCardColors.length]}
+                  onViewDetails={handleViewDetails}
+                  onSaveSession={handleSaveSession}
+                  onAddToSchedule={handleAddToSchedule}
+                />
+              ) : (
+                <Card key={session.id} className="overflow-hidden hover:shadow-md transition-all border-gray-200 dark:border-gray-700 dark:bg-gray-800 cursor-pointer flex" onClick={() => handleViewDetails(session.id)}>
+                  <div className={`w-2 ${sessionCardColors[idx % sessionCardColors.length]}`}></div>
+                  <div className="flex-1">
+                    <CardHeader className="pb-2">
+                      <div className="flex justify-between items-start">
                         <div>
-                          <p className="text-sm font-medium dark:text-white">{session.speaker.name}</p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">{session.speaker.role}, {session.speaker.company}</p>
+                          <h3 className="text-lg font-semibold dark:text-white line-clamp-2">{session.title}</h3>
                         </div>
-                      </div>}
-                    
-                    {session.speakers && <div className="mb-3">
-                        <p className="text-sm font-medium mb-2 dark:text-white">Panelists:</p>
-                        <div className="flex flex-wrap gap-x-4 gap-y-2">
-                          {session.speakers.map((speaker, index) => <div key={index} className="flex items-center gap-2">
-                              <BoringAvatar size={28} name={speaker.avatarName} variant="marble" colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]} />
-                              <div>
-                                <p className="text-xs font-medium dark:text-white">{speaker.name}</p>
-                                <p className="text-xs text-gray-500 dark:text-gray-400">{speaker.company}</p>
-                              </div>
-                            </div>)}
+                        <div className="flex gap-1">
+                          <Button variant="ghost" size="icon" onClick={e => {
+                            e.stopPropagation();
+                            handleAddToSchedule(session.id, session.title);
+                          }} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <Calendar className="h-4 w-4" />
+                          </Button>
+                          <Button variant="ghost" size="icon" onClick={e => {
+                            e.stopPropagation();
+                            handleSaveSession(session.id);
+                          }} className={session.saved ? "text-primary hover:text-primary/80 hover:bg-primary/10 dark:hover:bg-primary/20" : "hover:bg-gray-100 dark:hover:bg-gray-700"}>
+                            <Bookmark className="h-4 w-4" fill={session.saved ? "currentColor" : "none"} />
+                          </Button>
                         </div>
-                      </div>}
-                    
-                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">{session.description}</p>
-                    
-                    <div className="flex flex-wrap gap-1">
-                      {session.tags.map((tag, index) => <Badge key={index} variant="secondary" className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 transition-colors">{tag}</Badge>)}
-                    </div>
-                  </CardContent>
-                </div>
-              </Card>)}
+                      </div>
+                    </CardHeader>
+                    <CardContent className="dark:text-gray-300">
+                      <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                        <Clock className="h-4 w-4 mr-2" />
+                        <span>{session.time}</span>
+                        <span className="mx-2">•</span>
+                        <MapPin className="h-4 w-4 mr-1" />
+                        <span>{session.location}</span>
+                      </div>
+                      
+                      {session.speaker && <div className="flex items-center gap-2 mb-3">
+                          <BoringAvatar size={32} name={session.speaker.avatarName} variant="marble" colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]} />
+                          <div>
+                            <p className="text-sm font-medium dark:text-white">{session.speaker.name}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{session.speaker.role}, {session.speaker.company}</p>
+                          </div>
+                        </div>}
+                      
+                      {session.speakers && <div className="mb-3">
+                          <p className="text-sm font-medium mb-2 dark:text-white">Panelists:</p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-2">
+                            {session.speakers.map((speaker, index) => <div key={index} className="flex items-center gap-2">
+                                <BoringAvatar size={28} name={speaker.avatarName} variant="marble" colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]} />
+                                <div>
+                                  <p className="text-xs font-medium dark:text-white">{speaker.name}</p>
+                                  <p className="text-xs text-gray-500 dark:text-gray-400">{speaker.company}</p>
+                                </div>
+                              </div>)}
+                          </div>
+                        </div>}
+                      
+                      <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">{session.description}</p>
+                      
+                      <div className="flex flex-wrap gap-1">
+                        {session.tags.map((tag, index) => <Badge key={index} variant="secondary" className="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 transition-colors">{tag}</Badge>)}
+                      </div>
+                    </CardContent>
+                  </div>
+                </Card>
+              )
+            )}
           </div> : viewType === "grid" ? 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredSessions.map((session, idx) => <Card key={session.id} className="flex flex-col h-full hover:shadow-md transition-all border-gray-200 dark:border-gray-700 dark:bg-gray-800 cursor-pointer" onClick={() => handleViewDetails(session.id)}>
