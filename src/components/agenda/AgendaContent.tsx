@@ -34,12 +34,26 @@ export const AgendaContent: React.FC = () => {
     time: "9:00 AM - 10:30 AM",
     date: "Monday, June 10",
     location: "Main Stage",
-    speaker: {
-      name: "Dr. Emma Chen",
-      role: "CTO",
-      company: "FutureTech Industries",
-      avatarName: "Dr. Emma Chen"
-    },
+    speakers: [
+      {
+        name: "Dr. Emma Chen",
+        role: "CTO",
+        company: "FutureTech Industries",
+        avatarName: "Dr. Emma Chen"
+      },
+      {
+        name: "Alex Rodriguez",
+        role: "VP of Innovation",
+        company: "TechVision Corp",
+        avatarName: "Alex Rodriguez"
+      },
+      {
+        name: "Maya Patel",
+        role: "Head of AI Research",
+        company: "NextGen Labs",
+        avatarName: "Maya Patel"
+      }
+    ],
     description: "Join Dr. Emma Chen as she explores emerging technologies and their impact on our future.",
     tags: ["AI", "Future Tech", "Innovation"],
     saved: true,
@@ -55,15 +69,26 @@ export const AgendaContent: React.FC = () => {
     time: "11:00 AM - 1:00 PM",
     date: "Monday, June 10",
     location: "Workshop Room A",
-    speaker: {
-      name: "James Wilson",
-      role: "Principal Cloud Architect",
-      company: "CloudSphere",
-      avatarName: "James Wilson"
-    },
+    speakers: [
+      {
+        name: "James Wilson",
+        role: "Principal Cloud Architect",
+        company: "CloudSphere",
+        avatarName: "James Wilson"
+      },
+      {
+        name: "Lisa Chang",
+        role: "Senior DevOps Engineer",
+        company: "ScaleUp Tech",
+        avatarName: "Lisa Chang"
+      }
+    ],
     description: "A hands-on workshop exploring best practices for building scalable cloud applications.",
     tags: ["Cloud", "Architecture", "Scalability"],
-    saved: false
+    saved: false,
+    sponsors: [
+      { name: "Logoipsum 358", logo: "/logoipsum-358.svg" }
+    ]
   }, {
     id: 3,
     title: "Panel Discussion: Diversity in Tech",

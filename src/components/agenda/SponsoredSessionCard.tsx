@@ -82,14 +82,15 @@ export const SponsoredSessionCard: React.FC<SponsoredSessionCardProps> = ({
         <div className="flex">
           <div className={`w-2 ${colorClass}`}></div>
           <div className="flex-1">
-            <div className="p-6 pb-2">
-              <div className="flex justify-between items-start">
-                <div>
+            <CardContent className="dark:text-gray-300 pt-6">
+              {/* Title and Actions */}
+              <div className="flex justify-between items-start mb-2">
+                <div className="flex-1">
                   <h3 className="text-lg font-semibold dark:text-white line-clamp-2">
                     {session.title}
                   </h3>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 ml-2">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -121,10 +122,9 @@ export const SponsoredSessionCard: React.FC<SponsoredSessionCardProps> = ({
                   </Button>
                 </div>
               </div>
-            </div>
 
-            <CardContent className="dark:text-gray-300">
-              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+              {/* Time and Location - Close to title */}
+              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-5">
                 <Clock className="h-4 w-4 mr-2" />
                 <span>{session.time}</span>
                 <span className="mx-2">•</span>
@@ -132,8 +132,9 @@ export const SponsoredSessionCard: React.FC<SponsoredSessionCardProps> = ({
                 <span>{session.location}</span>
               </div>
 
+              {/* Single Speaker */}
               {session.speaker && (
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-5">
                   <BoringAvatar
                     size={32}
                     name={session.speaker.avatarName}
@@ -151,16 +152,14 @@ export const SponsoredSessionCard: React.FC<SponsoredSessionCardProps> = ({
                 </div>
               )}
 
+              {/* Multiple Speakers */}
               {session.speakers && (
-                <div className="mb-3">
-                  <p className="text-sm font-medium mb-2 dark:text-white">
-                    Panelists:
-                  </p>
-                  <div className="flex flex-wrap gap-x-4 gap-y-2">
+                <div className="mb-5">
+                  <div className="flex flex-wrap gap-x-6 gap-y-3">
                     {session.speakers.map((speaker, index) => (
                       <div key={index} className="flex items-center gap-2">
                         <BoringAvatar
-                          size={28}
+                          size={32}
                           name={speaker.avatarName}
                           variant="marble"
                           colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
@@ -179,10 +178,12 @@ export const SponsoredSessionCard: React.FC<SponsoredSessionCardProps> = ({
                 </div>
               )}
 
-              <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+              {/* Description */}
+              <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
                 {session.description}
               </p>
 
+              {/* Tags */}
               <div className="flex flex-wrap gap-1">
                 {session.tags.map((tag, index) => (
                   <Badge
