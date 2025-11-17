@@ -44,8 +44,8 @@ export const AgendaContent: React.FC = () => {
     tags: ["AI", "Future Tech", "Innovation"],
     saved: true,
     sponsors: [
-      { name: "Salesforce", logo: "/src/assets/salesforce-logo.png" },
-      { name: "HubSpot", logo: "/src/assets/hubspot-logo.png" }
+      { name: "Logoipsum 367", logo: "/logoipsum-367.svg" },
+      { name: "Logoipsum 402", logo: "/logoipsum-402.svg" }
     ]
   }, {
     id: 2,
