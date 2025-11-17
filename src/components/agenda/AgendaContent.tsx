@@ -342,6 +342,7 @@ export const AgendaContent: React.FC = () => {
                   key={session.id}
                   session={session}
                   colorClass={sessionCardColors[idx % sessionCardColors.length]}
+                  gradientVariant={session.id === 2 ? 2 : 1}
                   onViewDetails={handleViewDetails}
                   onSaveSession={handleSaveSession}
                   onAddToSchedule={handleAddToSchedule}

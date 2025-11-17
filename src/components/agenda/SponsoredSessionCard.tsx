@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShiningText } from "@/components/ui/shining-text";
 import { AnimatedGradientHero } from "@/components/ui/animated-gradient-hero";
+import { AnimatedGradientHero2 } from "@/components/ui/animated-gradient-hero-2";
 import BoringAvatar from "boring-avatars";
 
 interface Sponsor {
@@ -34,6 +35,7 @@ interface SponsoredSessionCardProps {
     sponsors?: Sponsor[];
   };
   colorClass: string;
+  gradientVariant?: 1 | 2;
   onViewDetails: (id: number) => void;
   onSaveSession: (id: number) => void;
   onAddToSchedule: (id: number, title: string) => void;
@@ -42,6 +44,7 @@ interface SponsoredSessionCardProps {
 export const SponsoredSessionCard: React.FC<SponsoredSessionCardProps> = ({
   session,
   colorClass,
+  gradientVariant = 1,
   onViewDetails,
   onSaveSession,
   onAddToSchedule,
@@ -50,7 +53,7 @@ export const SponsoredSessionCard: React.FC<SponsoredSessionCardProps> = ({
     <div className="relative rounded-2xl p-1.5 pt-4 overflow-hidden border border-gray-200 dark:border-gray-700">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 opacity-20">
-        <AnimatedGradientHero />
+        {gradientVariant === 2 ? <AnimatedGradientHero2 /> : <AnimatedGradientHero />}
       </div>
       
       {/* Content */}
